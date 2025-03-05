@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class VariablesApp {
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to Variables \n");
+		System.out.println("Welcome to Variables   \n");
 		
 		//define variables
 		int nbr1 = 5;
