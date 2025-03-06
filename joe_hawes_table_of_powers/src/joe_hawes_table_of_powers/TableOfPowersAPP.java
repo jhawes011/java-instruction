@@ -22,6 +22,7 @@ public class TableOfPowersAPP {
 	                break;
 	            }
 	        }
+	        scanner.close();
 
 	}
 	public static void displayTable(int n) {
