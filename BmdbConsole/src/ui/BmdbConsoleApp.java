@@ -3,7 +3,7 @@ package ui;
 import java.util.Scanner;
 
 import model.Movie;
-
+import util.MyConsole;
 import model.Actor;
 public class BmdbConsoleApp {
 
@@ -14,7 +14,7 @@ public class BmdbConsoleApp {
 	        System.out.println("-----------Welcome to the Bootcamp Movie Database--------");
 	        System.out.println("---------Enter Movie Information Below------------ \n");
 	        
-		//MyConsole.promptString("Enter movie title: ");
+		MyConsole.promptString("Enter movie title: ");
 	        System.out.print("Enter movie title: ");
 	        String title = sc.nextLine();
 
