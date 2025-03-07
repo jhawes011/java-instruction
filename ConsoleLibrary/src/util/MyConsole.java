@@ -112,7 +112,15 @@ public class MyConsole {
 	    public static void printL(String msg) {
 	        System.out.println(msg);
 	    }
-
+	    public static void printHeader(String header, String sep) {
+	        printL(header);
+	        String seperatorLine = (sep.repeat(header.length()));
+	        printL(seperatorLine);
+	    }
+	    public static void printHeader(String header) {
+	        printHeader(header, "=");
+	        
+	    }
 	    public static void readL() {
 	        sc.nextLine(); // Consume the newline character
 	    }
