@@ -24,32 +24,36 @@ public class MovieFileDAO implements DAO<Movie>
 	@Override
 	public List<Movie> getAll()
 		{
-
-			try (BufferedReader in = new BufferedReader(new FileReader(FILENAME)))
+			if (movies.size() == 0)
 			{
-				String line = in.readLine();
-				while (line != null)
+
+				try (BufferedReader in = new BufferedReader(new FileReader(FILENAME)))
 				{
-					String[] cols = line.split(SEP);
-					int id = Integer.parseInt(cols[0]);
-					String title = cols[1];
-					int year = Integer.parseInt(cols[2]);
-					String rating = cols[3];
-					String director = cols[4];
+					String line = in.readLine();
+					while (line != null)
+					{
 
-					// create a movie object
-					Movie m = new Movie(id, title, year, rating, director);
-					movies.add(m);
-					// add the movie object to the list
+						String[] cols = line.split("\\" + SEP);
+						int id = Integer.parseInt(cols[0]);
+						String title = cols[1];
+						int year = Integer.parseInt(cols[2]);
+						String rating = cols[3];
+						String director = cols[4];
+
+						// create a movie object
+						Movie m = new Movie(id, title, year, rating, director);
+						movies.add(m);
+						line = in.readLine();
+					}
+				} catch (FileNotFoundException e)
+				{
+					MyConsole.printL("File not found." + FILENAME);
+					e.printStackTrace();
+				} catch (IOException e)
+				{
+
+					e.printStackTrace();
 				}
-			} catch (FileNotFoundException e)
-			{
-				MyConsole.printL("File not found." + FILENAME);
-				e.printStackTrace();
-			} catch (IOException e)
-			{
-
-				e.printStackTrace();
 			}
 			return movies;
 		}
@@ -84,17 +88,18 @@ public class MovieFileDAO implements DAO<Movie>
 	@Override
 	public void delete(int id)
 		{
-			// find the movie in the list for this id
+			Movie delMovie = null;
 			for (Movie m : movies)
 			{
 				if (m.getId() == id)
 				{
-					movies.remove(m);
+					delMovie = m;
 
 				}
-				saveMovieFile();
+
 			}
-			
+			movies.remove(delMovie);
+			saveMovieFile();
 			// remove the movie from the list
 			// write the list to the file
 
@@ -102,7 +107,7 @@ public class MovieFileDAO implements DAO<Movie>
 
 	private void saveMovieFile()
 		{
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(FILENAME))))
+			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(FILENAME, true))))
 			{
 				for (Movie m : movies)
 				{
