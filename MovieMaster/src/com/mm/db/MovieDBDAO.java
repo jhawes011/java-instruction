@@ -1,6 +1,45 @@
 package com.mm.db;
 
-public class MovieDBDAO
+import java.util.List;
+
+import com.mm.model.Movie;
+
+public class MovieDBDAO implements DAO<Movie>
 {
+
+	@Override
+	public List<Movie> getAll()
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+	//not yet implemented
+	@Override
+	public Movie getById(int id)
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+	@Override
+	public Movie add(Movie t)
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+	//not yet implemented
+	@Override
+	public void update(Movie t)
+		{
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+	public void delete(int id)
+		{
+			// TODO Auto-generated method stub
+			
+		}
 
 }
